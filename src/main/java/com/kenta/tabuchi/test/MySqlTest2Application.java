@@ -11,16 +11,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 @SpringBootApplication
 public class MySqlTest2Application {
-    @Autowired
-    private JdbcTemplate jdbc;
+
     public static void main(String[] args) {
-        try (ConfigurableApplicationContext ctx = SpringApplication.run(MySqlTest2Application.class, args)) {
-        	MySqlTest2Application myapp = ctx.getBean(MySqlTest2Application.class);
-        
+      
+        	SpringApplication.run(MySqlTest2Application.class, args);
         	try {
 				SSHConnection sshcon = new SSHConnection();
-	            List<Map<String, Object>> list = myapp.jdbc.queryForList("SELECT * FROM M_student");
-	            list.forEach(System.out::println);
+
 			} catch (Throwable e) {
 				e.printStackTrace();
 			}
@@ -28,4 +25,4 @@ public class MySqlTest2Application {
 
     }
 
-}
+
