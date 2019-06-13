@@ -4,7 +4,6 @@
 package com.kenta.tabuchi.test;
 
 import java.util.Properties;
-
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 
@@ -20,13 +19,11 @@ public class SSHConnection {
 	private final static int REMOTE_PORT = 3306; 
 	private final static int SSH_REMOTE_PORT = 2222; 
 	private final static String SSH_USER = "vagrant";
-	//private final static String SSH_REMOTE_SERVER = "192.168.33.10";
-	//private final static String MYSQL_REMOTE_SERVER = "192.168.33.10";
 	private final static String SSH_REMOTE_SERVER = "127.0.0.1";
 	private final static String MYSQL_REMOTE_SERVER = "127.0.0.1";
 
 	private Session session; //represents each ssh session
-
+	
 	public void closeSSH ()
 	{
 	    session.disconnect();
@@ -34,7 +31,6 @@ public class SSHConnection {
 
 	public SSHConnection () throws Throwable
 	{
-
 	    JSch jsch = null;
 
 	        jsch = new JSch();
@@ -46,9 +42,7 @@ public class SSHConnection {
 	        final Properties config = new Properties();
             config.put("StrictHostKeyChecking", "no");
             session.setConfig(config);
-	        session.connect(); //ssh connection established!
-
-	        //by security policy, you must connect through a forwarded port          
+	        session.connect();          
 	        session.setPortForwardingL(LOCAl_PORT, MYSQL_REMOTE_SERVER, REMOTE_PORT); 
 
 	}
